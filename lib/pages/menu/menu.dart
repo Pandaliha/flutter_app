@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const title = 'Menü';
+const title = 'Navigation';
 
 class Menu extends StatelessWidget {
   @override

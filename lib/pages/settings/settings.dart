@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'menu.dart';
-import '../style/custom_theme.dart';
-import '../style/themes.dart';
+import 'package:flutter_app/pages/menu/menu.dart';
+import 'package:flutter_app/style/custom_theme.dart';
+import 'package:flutter_app/style/themes.dart';
 
 const pageTitle = 'Settings';
 
@@ -133,7 +133,7 @@ class _SettingsState extends State<Settings> {
                                 height: 15,
                               ),
                             ),
-                            Text('Black & White Theme',
+                            Text('Black, White & Grey Theme',
                                 style: Theme.of(context).textTheme.subtitle1),
                           ],
                         ),

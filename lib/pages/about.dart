@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'menu.dart';
+import 'menu/menu.dart';
 
 const pageTitle = 'About';
 
