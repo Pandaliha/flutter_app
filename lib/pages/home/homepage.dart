@@ -22,13 +22,13 @@ class _HomePageState extends State<HomePage> {
   DateTime currentDateTime = DateTime.now();
   bool valueSwitch = false;
   bool visibleCity;
-  bool details;
+  String weatherState;
+  String imageFilePath;
 
   @override
   void initState() {
     super.initState();
     visibleCity = true;
-    details = true;
   }
 
   @override
@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         physics: ClampingScrollPhysics(),
         child: Container(
-          //height: height,
           width: width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,6 +62,42 @@ class _HomePageState extends State<HomePage> {
                     builder: (context, snapshot) {
                       Map jsonData = snapshot.data;
                       if (snapshot.hasData) {
+                        weatherState = jsonData['weather'][0]['main'].toString();
+
+                        switch(weatherState) {
+                          case "Clear": {
+                            imageFilePath = 'assets/images/clear.jpg';
+                          }
+                          break;
+                          case "Clouds": {
+                            imageFilePath = 'assets/images/clouds.jpg';
+                          }
+                          break;
+                          case "Drizzle":
+                          case "Rain": {
+                            imageFilePath = 'assets/images/rain.jpg';
+                          }
+                          break;
+                          case "Haze":
+                          case "Fog":
+                          case "Mist": {
+                            imageFilePath = 'assets/images/fog.jpg';
+                          }
+                          break;
+                          case "Snow": {
+                            imageFilePath = 'assets/images/snow.jpg';
+                          }
+                          break;
+                          case "Thunderstorm":
+                          case "Tornado":  {
+                            imageFilePath = 'assets/images/storm.jpg';
+                          }
+                          break;
+                          default: {
+                            imageFilePath = 'assets/images/default.jpg';
+                          }
+                          break;
+                        }
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -143,6 +178,11 @@ class _HomePageState extends State<HomePage> {
                                 Container(
                                   height: height * 0.25,
                                   width: width,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(imageFilePath),
+                                        fit: BoxFit.cover),
+                                  ),
                                   child: Stack(
                                     alignment: Alignment.center,
                                     children: <Widget>[
@@ -175,10 +215,37 @@ class _HomePageState extends State<HomePage> {
                                             )],
                                         ),
                                       ),
+                                      /*Positioned(
+                                        top: width * 0.40,
+                                        child: Row(
+                                          children: <Widget>[
+                                            Text(weatherState,
+                                              style: TextStyle(
+                                                fontSize: width * 0.05,
+                                                fontWeight: FontWeight.w300,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),*/
                                     ],
                                   ),
                                 ),
                               ],
+
+                            ),
+                            SizedBox(
+                              height: width * 0.11,
+                            ),
+                            Center(
+                              child: Text(
+                                weatherState,
+                                style: TextStyle(
+                                  fontSize: width * 0.08,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Raleway',
+                                ),
+                              ),
                             ),
                             SizedBox(
                               height: width * 0.17,
@@ -207,7 +274,6 @@ class _HomePageState extends State<HomePage> {
                           ],
                         );
                       } else {
-                        // TODO
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[

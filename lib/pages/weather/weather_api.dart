@@ -8,7 +8,7 @@ Future<Map> getWeather(String appKey,String city)async{
   http.Response response = await http.get(urlAPI);
 
   if(response.statusCode == 200){
-    print('GET WEATHER: ' + response.body + '\n');
+    // print('GET WEATHER: ' + response.body + '\n');
     return json.decode(response.body);
   }else{
     HTTPException exc = new HTTPException(response.statusCode, response.body);
