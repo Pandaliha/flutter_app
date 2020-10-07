@@ -207,7 +207,104 @@ class _HomePageState extends State<HomePage> {
                           ],
                         );
                       } else {
-                        return Container();
+                        // TODO
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      visibleCity = false;
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.location_on,
+                                    size: width * 0.08,
+                                  ),
+                                ),
+                                Visibility(
+                                    visible: visibleCity,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          visibleCity = false;
+                                        });
+                                      },
+                                      child: Text(
+                                        'Not found.',
+                                        style: TextStyle(
+                                          fontSize: width * 0.09, //40,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )),
+                                Visibility(
+                                    visible: !visibleCity,
+                                    child: Expanded(
+                                        child: TextField(
+                                          autofocus: true,
+                                          style: TextStyle(color: Colors.black),
+                                          controller: textController,
+                                          decoration: InputDecoration(
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                  BorderRadius.circular(15)
+                                              )
+                                          ),
+                                          onSubmitted: (_) {
+                                            setState(() {
+                                              if (textController.text == null ||
+                                                  textController.text.isEmpty) {
+                                              } else {
+                                                chosenCity =
+                                                    textController.text;
+                                              }
+                                              visibleCity = true;
+                                            });
+                                          },
+                                        )
+                                    )
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: width * 0.009,
+                            ),
+                            Text(
+                              '${formatData.format(currentDateTime)}',
+                              style: TextStyle(
+                                fontSize: width * 0.05,
+                              ),
+                            ),
+                            SizedBox(
+                              height: width * 0.1,
+                            ),
+                              Text('No data could be fetched. Try a different city or check the logs.',
+                                  style: TextStyle(
+                                  fontSize: width * 0.07,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            SizedBox(
+                              height: width * 0.17,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: width * 0.03,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
                       }
                     }),
               ),
