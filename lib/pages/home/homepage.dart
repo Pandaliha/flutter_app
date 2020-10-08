@@ -215,19 +215,6 @@ class _HomePageState extends State<HomePage> {
                                             )],
                                         ),
                                       ),
-                                      /*Positioned(
-                                        top: width * 0.40,
-                                        child: Row(
-                                          children: <Widget>[
-                                            Text(weatherState,
-                                              style: TextStyle(
-                                                fontSize: width * 0.05,
-                                                fontWeight: FontWeight.w300,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),*/
                                     ],
                                   ),
                                 ),
@@ -309,7 +296,7 @@ class _HomePageState extends State<HomePage> {
                                       child: Text(
                                         'Not found.',
                                         style: TextStyle(
-                                          fontSize: width * 0.09, //40,
+                                          fontSize: width * 0.08, //40,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
