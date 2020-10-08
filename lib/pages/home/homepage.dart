@@ -40,14 +40,19 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(pageTitle, style: Theme.of(context).textTheme.headline5),
+        title: Text(pageTitle,
+          style: TextStyle(
+            fontSize: width * 0.065,
+          ),
+        ),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       drawer: Menu(),
       body: SingleChildScrollView(
         physics: ClampingScrollPhysics(),
         child: Container(
-          width: width,
+          // TODO
+          width: MediaQuery.of(context).size.width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -174,15 +179,11 @@ class _HomePageState extends State<HomePage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
+
                               children: <Widget>[
                                 Container(
                                   height: height * 0.25,
                                   width: width,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(imageFilePath),
-                                        fit: BoxFit.cover),
-                                  ),
                                   child: Stack(
                                     alignment: Alignment.center,
                                     children: <Widget>[
@@ -232,32 +233,40 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ],
-
                             ),
                             SizedBox(
-                              height: width * 0.11,
+                              height: width * 0.04,
                             ),
-                            Center(
-                              child: Text(
-                                weatherState,
-                                style: TextStyle(
-                                  fontSize: width * 0.08,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'Raleway',
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: width * 0.5,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(imageFilePath),
+                                    fit: BoxFit.cover),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  weatherState,
+                                  style: TextStyle(
+                                    fontSize: width * 0.08,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'Raleway',
+                                  ),
                                 ),
                               ),
                             ),
                             SizedBox(
-                              height: width * 0.17,
+                              height: width * 0.04,
                             ),
                             Text(
-                              'Choose a new city by pressing on the current city and typing in a new name.',
-                              style: TextStyle(
-                                fontSize: width * 0.05,
-                                color: Theme.of(context).accentColor,
-                                fontWeight: FontWeight.bold,
+                                'Choose a new city by pressing on the current city and typing in a new name.',
+                                style: TextStyle(
+                                  fontSize: width * 0.045,
+                                  color: Theme.of(context).accentColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),

@@ -18,10 +18,17 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text(pageTitle, style: Theme.of(context).textTheme.headline5),
+        title: Text(pageTitle,
+          style: TextStyle(
+            fontSize: width * 0.065,
+          ),
+        ),
       ),
       drawer: Menu(),
       body: Column(
@@ -36,7 +43,10 @@ class _SettingsState extends State<Settings> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: Text('Change Theme',
-                      style: Theme.of(context).textTheme.headline6),
+                      style: TextStyle(
+                        fontSize: width * 0.055,
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 14.0),
@@ -62,7 +72,10 @@ class _SettingsState extends State<Settings> {
                               ),
                             ),
                             Text('Light Theme',
-                                style: Theme.of(context).textTheme.subtitle1),
+                              style: TextStyle(
+                                fontSize: width * 0.05,
+                              ),
+                            ),
                           ],
                         ),
                         RaisedButton(
@@ -98,7 +111,10 @@ class _SettingsState extends State<Settings> {
                               ),
                             ),
                             Text('Dark Theme',
-                                style: Theme.of(context).textTheme.subtitle1),
+                              style: TextStyle(
+                                fontSize: width * 0.05,
+                              ),
+                            ),
                           ],
                         ),
                         RaisedButton(
@@ -133,8 +149,11 @@ class _SettingsState extends State<Settings> {
                                 height: 15,
                               ),
                             ),
-                            Text('Black, White & Grey Theme',
-                                style: Theme.of(context).textTheme.subtitle1),
+                            Text('Black & White Theme',
+                              style: TextStyle(
+                                fontSize: width * 0.05,
+                              ),
+                            ),
                           ],
                         ),
                         RaisedButton(
