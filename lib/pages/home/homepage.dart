@@ -51,7 +51,6 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         physics: ClampingScrollPhysics(),
         child: Container(
-          // TODO
           width: MediaQuery.of(context).size.width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                                     child: Expanded(
                                         child: TextField(
                                           autofocus: true,
-                                          style: TextStyle(color: Colors.black),
+                                          style: TextStyle(color: Theme.of(context).accentColor,),
                                           controller: textController,
                                           decoration: InputDecoration(
                                               border: OutlineInputBorder(
