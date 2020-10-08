@@ -46,13 +46,13 @@ The following tutorials were used:
 ### Images
 Sources of images that were used to display the current weather condition:
 
-##### Unsplash
+#### Unsplash
 
 [Federico Respini](https://unsplash.com/photos/sYffw0LNr7s)
 
 [eberhard grossgasteiger](https://unsplash.com/photos/pgTu7tevuro)
 
-##### Pexels
+#### Pexels
 
 [Lum3n](https://www.pexels.com/photo/green-pine-trees-covered-with-fogs-under-white-sky-during-daytime-167699/)
 
