@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'pages/home/homepage.dart';
 import 'pages/about.dart';
-import 'pages/settings/settings.dart';
+import 'pages/books/books.dart';
 import 'style/custom_theme.dart';
 import 'style/themes.dart';
 
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => HomePage(),
         '/about': (context) => About(),
-        '/settings': (context) => Settings(),
+        '/books': (context) => Books(),
       },
       theme: CustomTheme.of(context),
     );
