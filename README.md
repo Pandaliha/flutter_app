@@ -31,7 +31,7 @@ Light Theme             |  Dark Theme                |  Black Theme
 
 ### Tutorials
 
-The following tutorials were used:
+In addition to the official Flutter documentation, the following tutorials were used:
 
 [How to make an API call in Flutter (REST API)](https://ayusch.com/how-to-make-an-api-call-in-flutter-rest-api/)
 

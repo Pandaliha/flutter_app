@@ -64,7 +64,7 @@ class Menu extends StatelessWidget {
 
   Widget getListTile(context, icon, title, {Function onTap}) {
     return ListTile(
-      leading: Icon(icon),
+      leading: Icon(icon, size: 28.0,),
       title: Text(title, style: Theme.of(context).textTheme.headline6),
       onTap: onTap,
     );

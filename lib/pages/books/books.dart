@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/menu/menu.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_app/pages/books/util.dart' as util;
 
 const pageTitle = 'Books';
 
 class Books extends StatefulWidget {
-  final String latitude,longitude;
 
-  const Books({Key key, this.latitude, this.longitude}) : super(key: key);
+  const Books({Key key}) : super(key: key);
   @override
   _BooksState createState() => _BooksState();
 }
 
+
+enum Filter { all, title, author}
+
 class _BooksState extends State<Books> {
   TextEditingController _controller = TextEditingController();
   String searchterm;
+  Filter _filter = Filter.all;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -49,7 +52,87 @@ class _BooksState extends State<Books> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                TextField(
+              Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: 'Enter title or author',
+                        border: OutlineInputBorder(),
+                        //icon: Icon(Icons.search),
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+
+                  /*Text('Search for: ', style: TextStyle(
+                    fontSize: width * 0.055,
+                  ),),*/
+                  /*ListTile(
+                    title: const Text('All'),
+                    leading: Radio(
+                      value: Filter.all,
+                      groupValue: _filter,
+                      onChanged: (Filter value) {
+                        setState(() {
+                          _filter = value;
+                        });
+                      },
+                    ),
+                  ),
+                  ListTile(
+                    title: const Text('Title'),
+                    leading: Radio(
+                      value: Filter.title,
+                      groupValue: _filter,
+                      onChanged: (Filter value) {
+                        setState(() {
+                          _filter = value;
+                        });
+                      },
+                    ),
+                  ),
+                  ListTile(
+                    title: const Text('Author'),
+                    leading: Radio(
+                      value: Filter.author,
+                      groupValue: _filter,
+                      onChanged: (Filter value) {
+                        setState(() {
+                          _filter = value;
+                        });
+                      },
+                    ),
+                  ),*/
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: FlatButton(
+                        color: Theme.of(context).buttonColor,
+                        disabledColor: Colors.grey,
+                        padding: EdgeInsets.all(10.0),
+                        splashColor: Theme.of(context).primaryColor,
+                      onPressed: () {
+                        if (_formKey.currentState.validate()) {
+                          // Process data.
+                        }
+                      },
+                      child: Icon(Icons.search) //Text('Submit'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+                /*TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Enter title or author',
@@ -70,7 +153,8 @@ class _BooksState extends State<Books> {
                     },
                   );
                 },
-      ),
+      ),*/
+
               ],
             ),
           ),
