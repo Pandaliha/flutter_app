@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/menu/menu.dart';
 import 'package:flutter/services.dart';
@@ -12,14 +13,12 @@ class Books extends StatefulWidget {
   _BooksState createState() => _BooksState();
 }
 
-
-enum Filter { all, title, author}
-
 class _BooksState extends State<Books> {
   TextEditingController _controller = TextEditingController();
   String searchterm;
-  Filter _filter = Filter.all;
+  //Filter _filter = Filter.all;
   final _formKey = GlobalKey<FormState>();
+  String dropdownValue = 'all';
 
   @override
   void initState() {
@@ -62,6 +61,7 @@ class _BooksState extends State<Books> {
                     child: TextFormField(
                       decoration: const InputDecoration(
                         hintText: 'Enter title or author',
+                        hintStyle: TextStyle(fontSize: 18),
                         border: OutlineInputBorder(),
                         //icon: Icon(Icons.search),
                       ),
@@ -73,88 +73,57 @@ class _BooksState extends State<Books> {
                       },
                     ),
                   ),
-
-                  /*Text('Search for: ', style: TextStyle(
-                    fontSize: width * 0.055,
-                  ),),*/
-                  /*ListTile(
-                    title: const Text('All'),
-                    leading: Radio(
-                      value: Filter.all,
-                      groupValue: _filter,
-                      onChanged: (Filter value) {
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                     Text('Search ', style: TextStyle(
+                        fontSize: width * 0.05,
+                      ),
+                      ),
+                    DropdownButton<String>(
+                      value: dropdownValue,
+                      icon: Icon(Icons.arrow_drop_down, size: 30.0,),
+                      iconSize: 28,
+                      elevation: 16,
+                      style: TextStyle(color: Theme.of(context).cursorColor, fontSize: width * 0.05),
+                      underline: Container(
+                        height: 2,
+                        color: Theme.of(context).accentColor,
+                      ),
+                      onChanged: (String newValue) {
                         setState(() {
-                          _filter = value;
+                          dropdownValue = newValue;
                         });
                       },
+                      items: <String>['all', 'title', 'author']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
                     ),
-                  ),
-                  ListTile(
-                    title: const Text('Title'),
-                    leading: Radio(
-                      value: Filter.title,
-                      groupValue: _filter,
-                      onChanged: (Filter value) {
-                        setState(() {
-                          _filter = value;
-                        });
-                      },
-                    ),
-                  ),
-                  ListTile(
-                    title: const Text('Author'),
-                    leading: Radio(
-                      value: Filter.author,
-                      groupValue: _filter,
-                      onChanged: (Filter value) {
-                        setState(() {
-                          _filter = value;
-                        });
-                      },
-                    ),
-                  ),*/
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: FlatButton(
-                        color: Theme.of(context).buttonColor,
-                        disabledColor: Colors.grey,
-                        padding: EdgeInsets.all(10.0),
-                        splashColor: Theme.of(context).primaryColor,
-                      onPressed: () {
-                        if (_formKey.currentState.validate()) {
-                          // Process data.
-                        }
-                      },
-                      child: Icon(Icons.search) //Text('Submit'),
-                    ),
-                  ),
+                    Padding(padding: EdgeInsets.symmetric(horizontal: 24.0)),
+                    FlatButton(
+                          color: Theme.of(context).buttonColor,
+                          disabledColor: Colors.grey,
+                          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
+                          splashColor: Theme.of(context).primaryColor,
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              // Process data.
+                            }
+                          },
+                          child: Icon(Icons.search, size: 28.0,) //Text('Submit'),
+                      ),
+                  ],
+                ),
+              ),
                 ],
               ),
             ),
-
-                /*TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter title or author',
-                    icon: Icon(Icons.search),
-                  ),
-                controller: _controller,
-                onSubmitted: (String searchterm) async {
-                  await showDialog<void>(
-                    context: context,
-                    builder: (BuildContext context) {
-                      // TODO
-                      return Text(
-                        'To DO',
-                        style: TextStyle(
-                          fontSize: width * 0.05,
-                        ),
-                      );
-                    },
-                  );
-                },
-      ),*/
-
               ],
             ),
           ),

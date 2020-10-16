@@ -7,8 +7,9 @@ class MyThemes {
     primaryColor: Color(0xff8BC34A),
     highlightColor: Color(0xffc6ff00),
     accentColor: Color(0xff2196f3),
-    brightness: Brightness.light,
     buttonColor: Color(0xffFFEB3B),
+    cursorColor: Colors.black,
+    brightness: Brightness.light,
     fontFamily: 'Lato',
   );
 
@@ -17,6 +18,7 @@ class MyThemes {
     highlightColor: Color(0xffd500f9),
     accentColor: Colors.deepPurpleAccent,
     buttonColor: Colors.deepPurple[300],
+    cursorColor: Colors.white,
     brightness: Brightness.dark,
     fontFamily: 'Lato',
   );
@@ -26,6 +28,7 @@ class MyThemes {
     highlightColor: Color(0xffeeeeee),
     accentColor:  Colors.white,
     buttonColor: Colors.grey[500],
+    cursorColor: Colors.white,
     brightness: Brightness.dark,
     scaffoldBackgroundColor:  Colors.black,
     fontFamily: 'Lato',
