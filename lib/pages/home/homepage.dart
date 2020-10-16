@@ -342,7 +342,7 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               height: width * 0.1,
                             ),
-                              Text('No data could be fetched. Try a different city or check the logs.',
+                              Text('No data could be fetched. Please try a different city.',
                                   style: TextStyle(
                                   fontSize: width * 0.07,
                                   fontWeight: FontWeight.w600,

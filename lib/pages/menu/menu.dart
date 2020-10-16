@@ -20,6 +20,10 @@ class Menu extends StatelessWidget {
               ),
             ),
             decoration: BoxDecoration(
+            /*image: DecorationImage(
+            image: AssetImage(""),
+            fit: BoxFit.cover
+            ),*/
               color: Theme.of(context).primaryColor,
             ),
           ),
