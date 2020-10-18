@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/menu/menu.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/pages/books/util.dart' as util;
+import 'package:flutter_app/pages/books/goodreads_api.dart';
+import 'package:xml/xml.dart' as xml;
 
 const pageTitle = 'Books';
 
@@ -113,14 +115,58 @@ class _BooksState extends State<Books> {
                           splashColor: Theme.of(context).primaryColor,
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              // Process data.
+                              // TODO
+                              if (dropdownValue == 'title') {
+                              } else if (dropdownValue == 'author') {
+                              } else {
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.1, right: width * 0.1, top: width * 0.04),
+                                  child: FutureBuilder(
+                                      future: getBooks(util.appKey, searchterm, 1),
+                                      builder: (context, snapshot) {
+                                        Map jsonData = snapshot.data;
+                                        print('\n GET BOOKS: \n' + jsonData.toString() + '\n');
+
+                                        if (snapshot.hasData) {
+                                          /*var result = xml.parse(snapshot.body);
+                                          var bookElements = result.findAllElements('book');*/
+                                          return Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              // TODO if true
+                                            ],
+                                          );
+                                        } else {
+                                          return Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Row(
+                                                children: <Widget>[
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: width * 0.009,
+                                              ),
+                                              SizedBox(
+                                                height: width * 0.17,
+                                              ),
+                                            ],
+                                          );
+                                        }
+                                      }),
+                                );
+                              }
                             }
                           },
-                          child: Icon(Icons.search, size: 28.0,) //Text('Submit'),
+                          child: Icon(Icons.search, size: 28.0,)
                       ),
                   ],
                 ),
               ),
+
+
+
                 ],
               ),
             ),

@@ -1,14 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:html';
 import 'package:http/http.dart'as http;
 import 'package:flutter_app/http_exception.dart';
+import 'package:xml/xml.dart' as xml;
 
-Future<Map> getBooks(String appKey, String searchterm, int page)async {
+Future<XmlDocument> getBooks(String appKey, String searchterm, int page)async {
   String urlAPI ='https://www.goodreads.com/search/index.xml?key=${appKey}&q=${searchterm}&page=${page}';
   http.Response response = await http.get(urlAPI);
 
   if(response.statusCode == 200){
-    return json.decode(response.body);
+    var document = xml.parse(response.body);
+    return document;
   }else{
     HTTPException exc = new HTTPException(response.statusCode, response.body);
     print(exc);
