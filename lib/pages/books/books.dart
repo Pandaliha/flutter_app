@@ -70,12 +70,12 @@ class _BooksState extends State<Books> {
                             hintText: 'Enter title or author',
                             hintStyle: TextStyle(fontSize: 18),
                             border: OutlineInputBorder(),
-                            //icon: Icon(Icons.search),
                           ),
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please enter some text';
                             }
+                            searchterm = value;
                             return null;
                           },
                         ),
@@ -139,34 +139,36 @@ class _BooksState extends State<Books> {
                                             future: getBooks(util.appKey, searchterm, 1),
                                             builder: (context, snapshot) {
                                               Map jsonData = snapshot.data;
-                                              /*print('\n GET BOOKS: \n' +
-                                                  jsonData.toString() + '\n\n');*/
+                                              Map bookArray = jsonData['GoodreadsResponse']['search']['results']['work'];
 
                                               if (snapshot.hasData) {
+
                                                 return ListView.builder(
-                                                  /*physics: BouncingScrollPhysics(),
-                                                  scrollDirection: Axis.horizontal,*/
-                                                  itemCount: (jsonData.length ~/ 4).toInt(),
-                                                  itemBuilder: (context, index) {
-                                                    return VerticalBookCard(
-                                                      book: jsonData[index],
-                                                      title: jsonData[index].bookTitle,
-                                                      imageUrl: jsonData[index].imageUrl,
+                                                  itemCount: 2,
+                                                  itemBuilder: (context, position) {
+                                                    return ListTile(
+                                                        title: Text('${bookArray[position]['best_book']['title']['\$t']}'),
+                                                        //subtitle: Text('${bookArray[position]['best_book'].author}'),
+                                                        /*leading:
+                                                        onTap: () => _onTapItem(context, items[position]),*/
                                                     );
                                                   },
                                                 );
 
-                                                /*return Column(
-                                                    crossAxisAlignment: CrossAxisAlignment
-                                                        .start,
-                                                    children: <Widget>[
+                                                return ListView.builder(
+                                                  physics: BouncingScrollPhysics(),
+                                                  scrollDirection: Axis.horizontal,
+                                                  itemCount: 5,
+                                                  itemBuilder: (context, index) {
+                                                    return VerticalBookCard(
 
-                                                // TODO if true
-                                                */ /*var data = List.from(snapshot.
-                                                    data.reversed);*/ /*
+                                                      book: bookArray[index]['best_book'],
+                                                      title: bookArray[index]['best_book']['title'],
+                                                      imageUrl: bookArray[index]['best_book']['imageUrl'],
+                                                    );
+                                                  },
+                                                );
 
-                                              ],
-                                              );*/
                                               } else {
                                                 return Column(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
