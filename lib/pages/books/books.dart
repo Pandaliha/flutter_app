@@ -4,7 +4,6 @@ import 'package:flutter_app/pages/menu/menu.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/pages/books/util.dart' as util;
 import 'package:flutter_app/pages/books/goodreads_api.dart';
-import 'package:xml/xml.dart' as xml;
 
 const pageTitle = 'Books';
 
@@ -124,13 +123,11 @@ class _BooksState extends State<Books> {
                                       left: width * 0.1, right: width * 0.1, top: width * 0.04),
                                   child: FutureBuilder(
                                       future: getBooks(util.appKey, searchterm, 1),
-                                      builder: (context, snapshot) {
+                                      /*builder: (context, snapshot) {
                                         Map jsonData = snapshot.data;
                                         print('\n GET BOOKS: \n' + jsonData.toString() + '\n');
 
                                         if (snapshot.hasData) {
-                                          /*var result = xml.parse(snapshot.body);
-                                          var bookElements = result.findAllElements('book');*/
                                           return Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: <Widget>[
@@ -154,7 +151,8 @@ class _BooksState extends State<Books> {
                                             ],
                                           );
                                         }
-                                      }),
+                                      }*/
+                                      ),
                                 );
                               }
                             }
