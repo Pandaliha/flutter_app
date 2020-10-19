@@ -351,6 +351,10 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             SizedBox(
+                              height: width * 0.4,
+                            ),
+                            Center(child: CircularProgressIndicator()),
+                            SizedBox(
                               height: width * 0.1,
                             ),
                             Text(

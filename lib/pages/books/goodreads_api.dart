@@ -12,7 +12,7 @@ Future<Map> getBooks(String appKey, String searchterm, int page)async {
   var jsonString = xml2Json.toParker();
 
   if(response.statusCode == 200){
-    print('\n\n JSON STRING\n\n ' + jsonString);
+    print(jsonString);
     return jsonDecode(jsonString);
   }else{
     HTTPException exc = new HTTPException(response.statusCode, response.body);

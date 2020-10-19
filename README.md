@@ -43,6 +43,8 @@ In addition to the official Flutter documentation, the following tutorials were 
 
 [Set background image to Flutter App](https://mightytechno.com/background-image-flutter/)
 
+[Dart/Flutter – Convert XML to JSON using xml2json](https://bezkoder.com/dart-flutter-xml-to-json-xml2json/)
+
 ### Images
 Sources of images that were used to display the current weather condition:
 
