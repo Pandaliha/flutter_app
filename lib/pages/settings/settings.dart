@@ -78,7 +78,11 @@ class _SettingsState extends State<Settings> {
                             ),
                           ],
                         ),
-                        RaisedButton(
+                        FlatButton(
+                          color: Theme.of(context).buttonColor,
+                          disabledColor: Colors.grey,
+                          padding: EdgeInsets.all(10.0),
+                          splashColor: Theme.of(context).primaryColor,
                           onPressed: () {
                             _changeTheme(context, MyThemeKeys.LIGHT);
                           },
@@ -117,7 +121,11 @@ class _SettingsState extends State<Settings> {
                             ),
                           ],
                         ),
-                        RaisedButton(
+                        FlatButton(
+                          color: Theme.of(context).buttonColor,
+                          disabledColor: Colors.grey,
+                          padding: EdgeInsets.all(10.0),
+                          splashColor: Theme.of(context).primaryColor,
                           onPressed: () {
                             _changeTheme(context, MyThemeKeys.DARK);
                           },
@@ -156,7 +164,11 @@ class _SettingsState extends State<Settings> {
                             ),
                           ],
                         ),
-                        RaisedButton(
+                        FlatButton(
+                          color: Theme.of(context).buttonColor,
+                          disabledColor: Colors.grey,
+                          padding: EdgeInsets.all(10.0),
+                          splashColor: Theme.of(context).primaryColor,
                           onPressed: () {
                             _changeTheme(context, MyThemeKeys.BW);
                           },

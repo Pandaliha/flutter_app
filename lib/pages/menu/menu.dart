@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 const title = 'Navigation';
 
@@ -29,21 +30,21 @@ class Menu extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: getListTile(context, Icons.home, 'Home', onTap: () {
+            child: getListTile(context, MdiIcons.weatherPartlyCloudy, 'Weather', onTap: () {
               Navigator.pushReplacementNamed(context, '/');
             }),
           ),
           getLine(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: getListTile(context, Icons.info, 'About', onTap: () {
-              Navigator.pushReplacementNamed(context, '/about');
+            child: getListTile(context, MdiIcons.bookOpenPageVariant, 'Books', onTap: () {
+              Navigator.pushReplacementNamed(context, '/books');
             }),
           ),
           getLine(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: getListTile(context, Icons.settings, 'Settings', onTap: () {
+            child: getListTile(context, MdiIcons.cog, 'Settings', onTap: () {
               Navigator.pushReplacementNamed(context, '/settings');
             }),
           ),
@@ -63,7 +64,7 @@ class Menu extends StatelessWidget {
 
   Widget getListTile(context, icon, title, {Function onTap}) {
     return ListTile(
-      leading: Icon(icon),
+      leading: Icon(icon, size: 28.0,),
       title: Text(title, style: Theme.of(context).textTheme.headline6),
       onTap: onTap,
     );
