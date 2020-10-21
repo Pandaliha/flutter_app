@@ -4,6 +4,7 @@ A Flutter App for trying out different things and getting more familiar with Dar
 
 Overview:
 - Homepage
+- Books
 - Settings
 - Sources
 
@@ -18,6 +19,14 @@ Light Theme             |  Dark Theme
 Black Theme             |  City not found
 :-------------------------:|:-------------------------:
 ![](assets/images/Homepage3.png)  |  ![](assets/images/Homepage4.png)
+
+## Books
+Search for books through Goodreads. Uses the [Goodreads API](https://www.goodreads.com/api). Filtering by title or author possible.
+
+Search Form             |  Filter by title           |  Filter by author
+:-------------------------:|:-------------------------:|:-------------------------:
+![](assets/images/Books1.png)  |  ![](assets/images/Books2.png)  |  ![](assets/images/Books3.png)
+
 
 ## Settings
 There are three Themes for the app available. This page enables changing the theme. Default is the light theme.
@@ -36,6 +45,8 @@ In addition to the official Flutter documentation, the following tutorials were 
 [How to make an API call in Flutter (REST API)](https://ayusch.com/how-to-make-an-api-call-in-flutter-rest-api/)
 
 [Retrieve Json data in Flutter](https://medium.com/oceanize-geeks/retrieve-json-data-in-flutter-49c8fcd3e8c6)
+
+[A Guide to Using Futures in Flutter for Beginners](https://medium.com/flutter-community/a-guide-to-using-futures-in-flutter-for-beginners-ebeddfbfb967)
 
 [Dynamic theming with Flutter](https://medium.com/flutter-community/dynamic-theming-with-flutter-78681285d85f)
 

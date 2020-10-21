@@ -66,6 +66,10 @@ class _HomePageState extends State<HomePage> {
                         chosenCity == null ? util.defaultCity : chosenCity),
                     builder: (context, snapshot) {
                       Map jsonData = snapshot.data;
+                      if (!snapshot.hasData) {
+                        return Center(
+                            child: CircularProgressIndicator());
+                      }
                       if (snapshot.hasData) {
                         weatherState =
                             jsonData['weather'][0]['main'].toString();

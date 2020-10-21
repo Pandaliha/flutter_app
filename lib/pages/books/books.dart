@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/pages/books/util.dart' as util;
 import 'package:flutter_app/pages/books/goodreads_api.dart';
 import 'package:flutter_app/pages/books/book_model.dart';
-import 'package:flutter_app/pages/books/book_details.dart';
 
 const pageTitle = 'Books';
 
@@ -17,10 +16,9 @@ class Books extends StatefulWidget {
 }
 
 class _BooksState extends State<Books> {
-  TextEditingController _controller = TextEditingController();
-  String searchterm;
-
   final _formKey = GlobalKey<FormState>();
+
+  String searchterm;
   String dropdownValue = 'all';
 
   @override
@@ -35,8 +33,7 @@ class _BooksState extends State<Books> {
 
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
-    Book bookResult;
+    List<Book> bookResults;
 
     return Scaffold(
       appBar: AppBar(
@@ -127,72 +124,17 @@ class _BooksState extends State<Books> {
                                 onPressed: () {
                                   if (_formKey.currentState.validate()) {
                                     // TODO
-                                    if (dropdownValue == 'title') {
-                                    } else if (dropdownValue == 'author') {
-                                    } else {
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.1,
-                                            right: width * 0.1,
-                                            top: width * 0.04),
-                                        child: FutureBuilder(
-                                            future: getBooks(util.appKey, searchterm, 1),
-                                            builder: (context, snapshot) {
-                                              Map jsonData = snapshot.data;
-                                              Map bookArray = jsonData['GoodreadsResponse']['search']['results']['work'];
-
-                                              if (snapshot.hasData) {
-
-                                                return ListView.builder(
-                                                  itemCount: 2,
-                                                  itemBuilder: (context, position) {
-                                                    return ListTile(
-                                                        title: Text('${bookArray[position]['best_book']['title']['\$t']}'),
-                                                        //subtitle: Text('${bookArray[position]['best_book'].author}'),
-                                                        /*leading:
-                                                        onTap: () => _onTapItem(context, items[position]),*/
-                                                    );
-                                                  },
-                                                );
-
-                                                return ListView.builder(
-                                                  physics: BouncingScrollPhysics(),
-                                                  scrollDirection: Axis.horizontal,
-                                                  itemCount: 5,
-                                                  itemBuilder: (context, index) {
-                                                    return VerticalBookCard(
-
-                                                      book: bookArray[index]['best_book'],
-                                                      title: bookArray[index]['best_book']['title'],
-                                                      imageUrl: bookArray[index]['best_book']['imageUrl'],
-                                                    );
-                                                  },
-                                                );
-
-                                              } else {
-                                                return Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Row(
-                                                      children: <Widget>[
-                                                        SizedBox(
-                                                          height: width * 0.009,
-                                                        ),
-                                                        Center(child: CircularProgressIndicator()),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height: width * 0.009,
-                                                    ),
-                                                    SizedBox(
-                                                      height: width * 0.17,
-                                                    ),
-                                                  ],
-                                                );
-                                              }
-                                            }),
-                                      );
-                                    }
+                                    FutureBuilder(
+                                        future: getBooks(util.appKey, searchterm, 1, dropdownValue),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData || searchterm == null) {
+                                            return Center(child: CircularProgressIndicator());
+                                          }
+                                          bookResults = snapshot.data;
+                                          return Container(
+                                            height: width * 0.10,
+                                          );
+                                        });
                                   }
                                 },
                                 child: Icon(
@@ -205,70 +147,52 @@ class _BooksState extends State<Books> {
                     ],
                   ),
                 ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height - 60,
+                  child: FutureBuilder(
+                      future: getBooks(util.appKey, searchterm, 1, dropdownValue),
+                      builder: (context, snapshot) {
+                        if (searchterm == null) {
+                          return Center();
+                        } else if (!snapshot.hasData) {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        bookResults = snapshot.data;
+                        return ListView.builder(
+                          physics: BouncingScrollPhysics(),
+                          itemCount: bookResults.length,
+                          itemBuilder: (context, position) {
+                            return Card(
+                              child: ListTile(
+                                leading: Image.network(
+                                  '${bookResults[position].imageUrl}',
+                                ),
+                                title: Text(
+                                  '${bookResults[position].title}',
+                                  style: TextStyle(
+                                    fontSize: width * 0.04,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  '${bookResults[position].author}',
+                                  style: TextStyle(
+                                    fontSize: width * 0.038,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                isThreeLine: true,
+                              ),
+                            );
+                          },
+                        );
+                      }),
+                ),
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-}
-
-// TODO
-class VerticalBookCard extends StatelessWidget {
-  final Book book;
-  final String title;
-  final String imageUrl;
-
-  VerticalBookCard({this.imageUrl, this.title, this.book});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BookDetails(
-                  book: book,
-                ),
-              ),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 150,
-              width: 100,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                image: DecorationImage(
-                  image: NetworkImage(imageUrl),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey[200],
-                    blurRadius: 6,
-                    spreadRadius: 1,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        Text(
-          title,
-          style: TextStyle(
-            color: Colors.deepPurple,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
     );
   }
 }
