@@ -12,13 +12,13 @@ Overview:
 Displays the current temperature and weather condition for a given city. The default is set to Karlsruhe, 
 a different city can be set by pressing on the city name and typing in a valid city name.
 
-Light Theme             |  Dark Theme
-:-------------------------:|:-------------------------:
-![](assets/images/Homepage1.png)  |  ![](assets/images/Homepage2.png)
+Light Theme            |  Dark Theme           |  Black Theme
+:-------------------------:|:-------------------------:|:-------------------------:
+![](assets/images/Homepage1.png)  |  ![](assets/images/Homepage2.png)  |  ![](assets/images/Homepage3.png)
 
-Black Theme             |  City not found
+City not found           |  Navigation
 :-------------------------:|:-------------------------:
-![](assets/images/Homepage3.png)  |  ![](assets/images/Homepage4.png)
+![](assets/images/Homepage4.png)  |  ![](assets/images/Menu.png)
 
 ## Books
 Search for books through Goodreads. Uses the [Goodreads API](https://www.goodreads.com/api). Filtering by title or author possible.
@@ -53,8 +53,6 @@ In addition to the official Flutter documentation, the following tutorials were 
 [Flutter Navigation Drawer from Basic to Custom Drawer](https://medium.com/flutterpub/flutter-navigation-drawer-from-basic-to-custom-drawer-66a60d27d687)
 
 [Set background image to Flutter App](https://mightytechno.com/background-image-flutter/)
-
-[Dart/Flutter – Convert XML to JSON using xml2json](https://bezkoder.com/dart-flutter-xml-to-json-xml2json/)
 
 ### Images
 Sources of images that were used to display the current weather condition:
